@@ -40,6 +40,9 @@ VALIDATE $? "Disable NODE JS"
 dnf module enable nodejs:20 -y &>>$LOG_FILE 
 VALIDATE $? "Enable nodejs:20"
 
+dnf install nodejs -y &>>$LOG_FILE
+VALIDATE $? "Install nodejs"
+
 id expense &>>$LOG_FILE
 if [ $? -ne 0 ]
 then    
