@@ -50,16 +50,16 @@ else
     echo -e "$Y expense user is already existed..skipping $N"    
 fi
 
-# mkdir -p /app 
-# VALIDATE $? "Creating /app folder"
+mkdir -p /app 
+VALIDATE $? "Creating /app folder"
 
-# curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE
-# VALIDATE $? "Downloading backend application code"
+curl -o /tmp/backend.zip https://expense-builds.s3.us-east-1.amazonaws.com/expense-backend-v2.zip &>>$LOG_FILE
+VALIDATE $? "Downloading backend application code"
 
-# cd /app
-# rm -rf /app/* #Removing existing code
-# unzip /tmp/backend.zip  &>>$LOG_FILE
-# VALIDATE $? "Extracting backend application code"
+cd /app
+rm -rf /app/* #Removing existing code
+unzip /tmp/backend.zip  &>>$LOG_FILE
+VALIDATE $? "Extracting backend application code"
 
 # npm install
 # cp /home/ec2-user/expense-shell/backend.service /etc/systemd/system/backend.service
