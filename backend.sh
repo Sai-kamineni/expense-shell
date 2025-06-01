@@ -83,3 +83,52 @@ VALIDATE $? "Enabled backend"
 
 systemctl restart backend &>>$LOG_FILE
 VALIDATE $? "Restarted Backend"
+
+
+# [ ec2-user@ip-172-31-44-120 ~/expense-shell ]$ netstat -lntp
+# (Not all processes could be identified, non-owned process info
+#  will not be shown, you would have to be root to see it all.)
+# Active Internet connections (only servers)
+# Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+# tcp        0      0 0.0.0.0:22              0.0.0.0:*               LISTEN      -
+# tcp6       0      0 :::22                   :::*                    LISTEN      -
+# tcp6       0      0 :::8080                 :::*                    LISTEN      -
+
+# 23.23.71.56 | 172.31.44.120 | t3.micro | https://github.com/Sai-kamineni/expense-shell.git
+# [ ec2-user@ip-172-31-44-120 ~/expense-shell ]$
+
+# 23.23.71.56 | 172.31.44.120 | t3.micro | https://github.com/Sai-kamineni/expense-shell.git
+# [ ec2-user@ip-172-31-44-120 ~/expense-shell ]$ systemctl status backend
+# ● backend.service - Backend Service
+#      Loaded: loaded (/etc/systemd/system/backend.service; enabled; preset: disabled)
+#      Active: active (running) since Sun 2025-06-01 09:10:46 UTC; 53s ago
+#    Main PID: 15140 (node)
+#       Tasks: 11 (limit: 4015)
+#      Memory: 23.5M
+#         CPU: 347ms
+#      CGroup: /system.slice/backend.service
+#              └─15140 /bin/node /app/index.js
+
+# 23.23.71.56 | 172.31.44.120 | t3.micro | https://github.com/Sai-kamineni/expense-shell.git
+# [ ec2-user@ip-172-31-44-120 ~/expense-shell ]$ ps -ef | grep node
+# root         716       2  0 07:48 ?        00:00:00 [xfs-inodegc/dm-]
+# root         836       2  0 07:48 ?        00:00:00 [xfs-inodegc/dm-]
+# root         837       2  0 07:48 ?        00:00:00 [xfs-inodegc/dm-]
+# root         859       2  0 07:48 ?        00:00:00 [xfs-inodegc/nvm]
+# root         876       2  0 07:48 ?        00:00:00 [xfs-inodegc/dm-]
+# root         883       2  0 07:48 ?        00:00:00 [xfs-inodegc/dm-]
+# root         897       2  0 07:48 ?        00:00:00 [xfs-inodegc/dm-]
+# expense    15140       1  0 09:10 ?        00:00:00 /bin/node /app/index.js
+# ec2-user   15169    1346  0 09:11 pts/0    00:00:00 grep --color=auto node
+
+# 23.23.71.56 | 172.31.44.120 | t3.micro | https://github.com/Sai-kamineni/expense-shell.git
+# [ ec2-user@ip-172-31-44-120 ~/expense-shell ]$ telnet mysql.kamineni.site 3306
+# Trying 172.31.45.36...
+# Connected to mysql.kamineni.site.
+# Escape character is '^]'.
+# J
+# 8.0.415I{
+# ko▒pMvC&"vcaching_sha2_password^CConnection closed by foreign host.
+
+# 23.23.71.56 | 172.31.44.120 | t3.micro | https://github.com/Sai-kamineni/expense-shell.git
+# [ ec2-user@ip-172-31-44-120 ~/expense-shell ]$
